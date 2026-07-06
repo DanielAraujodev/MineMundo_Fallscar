@@ -1,6 +1,7 @@
 -- criacao do banco (mysql / mariadb)
 
-CREATE DATABASE IF NOT EXISTS falls_car
+DROP DATABASE IF EXISTS falls_car;
+CREATE DATABASE falls_car
     DEFAULT CHARACTER SET utf8mb4
     DEFAULT COLLATE utf8mb4_general_ci;
 
