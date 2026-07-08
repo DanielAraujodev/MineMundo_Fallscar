@@ -1,7 +1,6 @@
 -- criacao do banco (mysql / mariadb)
 
-DROP DATABASE IF EXISTS falls_car;
-CREATE DATABASE falls_car
+CREATE DATABASE IF NOT EXISTS falls_car
     DEFAULT CHARACTER SET utf8mb4
     DEFAULT COLLATE utf8mb4_general_ci;
 
@@ -76,7 +75,7 @@ CREATE TABLE cliente (
 CREATE TABLE cartao_credito (
     id_cartao      INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente     INT NOT NULL,
-    numero         VARCHAR(20)  NOT NULL,
+    ultimos_digitos CHAR(4)      NOT NULL,
     bandeira       VARCHAR(20)  NOT NULL,
     nome_titular   VARCHAR(100) NOT NULL,
     validade       CHAR(7)      NOT NULL,
