@@ -56,11 +56,12 @@ INSERT INTO cliente (nome, cpf, numero_cnh, validade_cnh, telefone, email) VALUE
 SELECT * FROM cliente;
 
 -- cartao de credito
-INSERT INTO cartao_credito (id_cliente, numero, bandeira, nome_titular, validade) VALUES
-(1, '4111111111111111', 'Visa',       'JOAO PEDRO SILVA',   '08/2029'),
-(2, '5500000000000004', 'Mastercard', 'MARIANA COSTA LIMA', '03/2028');
+INSERT INTO cartao_credito (id_cliente, ultimos_digitos, bandeira, nome_titular, validade) VALUES
+(1, '1111', 'Visa',       'JOAO PEDRO SILVA',   '08/2029'),
+(2, '0004', 'Mastercard', 'MARIANA COSTA LIMA', '03/2028');
 
-SELECT cc.id_cartao, c.nome AS cliente, cc.bandeira, cc.nome_titular, cc.validade
+SELECT cc.id_cartao, c.nome AS cliente, cc.ultimos_digitos,
+       cc.bandeira, cc.nome_titular, cc.validade
 FROM cartao_credito cc
 JOIN cliente c ON c.id_cliente = cc.id_cliente;
 
@@ -93,10 +94,12 @@ INSERT INTO pagamento (id_reserva, id_cartao, tipo, valor, status) VALUES
 (1, 1, 'ANTECIPADO', 360.00, 'APROVADO'),
 (2, 2, 'ANTECIPADO', 540.00, 'APROVADO');
 
-SELECT p.id_pagamento, c.nome AS cliente, p.tipo, p.valor, p.status, p.data_pagamento
+SELECT p.id_pagamento, c.nome AS cliente, cc.bandeira,
+       cc.ultimos_digitos, p.tipo, p.valor, p.status, p.data_pagamento
 FROM pagamento p
-JOIN reserva r ON r.id_reserva = p.id_reserva
-JOIN cliente c ON c.id_cliente = r.id_cliente;
+JOIN reserva r        ON r.id_reserva = p.id_reserva
+JOIN cliente c        ON c.id_cliente = r.id_cliente
+JOIN cartao_credito cc ON cc.id_cartao = p.id_cartao;
 
 -- locacao da Mariana (reserva 2, efetivada direto na loja)
 INSERT INTO locacao (id_reserva, id_automovel, id_motorista,
