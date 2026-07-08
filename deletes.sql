@@ -18,7 +18,7 @@ DELETE FROM locacao           WHERE id_locacao      = 99;
 DELETE FROM pagamento         WHERE id_pagamento    = 99;
 DELETE FROM reserva           WHERE id_reserva      = 99;
 DELETE FROM motorista         WHERE id_motorista    = 99;
-DELETE FROM cartao_credito    WHERE id_cartao       = 99;
+DELETE FROM forma_pagamento   WHERE id_forma_pagamento = 99;
 DELETE FROM automovel         WHERE id_automovel    = 99;
 DELETE FROM distancia_loja    WHERE id_loja_a = 99 AND id_loja_b = 98;
 DELETE FROM categoria_veiculo WHERE id_categoria    = 99;
